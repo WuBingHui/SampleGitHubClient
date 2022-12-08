@@ -1,7 +1,8 @@
-package com.anthony.net.sample.github.client
+package com.anthony.net.sample.github.client.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.anthony.net.sample.github.client.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
