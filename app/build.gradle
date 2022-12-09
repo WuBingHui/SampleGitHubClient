@@ -35,6 +35,7 @@ android {
         release {
 
             minifyEnabled false
+            buildConfigField "String", 'BASE_URL', '"https://api.github.com/"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
         }
