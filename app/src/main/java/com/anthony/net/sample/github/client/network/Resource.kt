@@ -1,7 +1,5 @@
 package com.anthony.net.sample.github.client.network
 
-
-
 enum class Status(val value: String) {
     SUCCESS("success"),
     FAILED("failed"),

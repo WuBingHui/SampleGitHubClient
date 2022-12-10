@@ -59,14 +59,12 @@ object RetrofitBuilder {
 
     private fun createResponse(chain: Interceptor.Chain, request: Request): Response {
 
-        val authorization = ""
-
         return chain.proceed(
             request.newBuilder()
-                .header("Authorization", authorization)
+                .header("Accept", "application/vnd.github+json")
+                .header("X-GitHub-Api-Version", "2022-11-28")
                 .method(request.method, request.body).build()
         )
-
 
     }
 
@@ -78,11 +76,11 @@ object RetrofitBuilder {
             val request = chain.request()
             val response = createResponse(chain, request)
 
-            when (response.code) {
-                in 400..900 -> {
-                    throw IOException(response.toString())
-                }
-            }
+//            when (response.code) {
+//                in 400..900 -> {
+//                    throw IOException(response.toString())
+//                }
+//            }
 
             return response
 

@@ -1,16 +1,12 @@
-package com.anthony.net.sample.github.client.model.repository
+package com.anthony.net.sample.github.client.model.login.repository
 
 import com.anthony.net.sample.github.client.dto.response.Collaborators
 import com.anthony.net.sample.github.client.dto.response.RepositoryCommits
 import com.anthony.net.sample.github.client.dto.response.SearchUser
-import com.anthony.net.sample.github.client.dto.response.UserRepository
 import com.anthony.net.sample.github.client.service.GithubClientService
 import retrofit2.Response
 
 class GithubClientRepository(private val githubClientService: GithubClientService) {
-
-    suspend fun getUserRepository(userName: String): Response<UserRepository> =
-        githubClientService.getUserRepository(userName)
 
     suspend fun getSearchList(userName: String): Response<SearchUser> =
         githubClientService.getSearchList(userName)

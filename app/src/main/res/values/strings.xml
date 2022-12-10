@@ -1,3 +1,16 @@
 <resources>
-    <string name="app_name">Sample GitHub Client</string>
+    <string name="app_name">MyGit</string>
+    <string name="redirection_failed">網路不給力，請稍後在試</string>
+    <string name="account_hint">輸入您的用戶名</string>
+    <string name="stared">開始!</string>
+    <string name="exit_app">再按一次返回建退出APP</string>
+    <string name="search">輸入欲搜尋的用戶名</string>
+    <string name="skip">略過</string>
+    <string name="no_search">查無用戶</string>
+    <string name="not_empty">請勿空白</string>
+    <string name="search_other">搜尋其他作者</string>
+    <string name="no_description">無描述</string>
+    <string name="zero">0</string>
+
+
 </resources>

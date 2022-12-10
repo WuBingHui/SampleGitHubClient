@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <array name="repository_tab">
+        <item>commits</item>
+        <item>collaborators</item>
+    </array>
+
+
+
+
+
+</resources>

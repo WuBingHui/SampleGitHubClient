@@ -1,12 +1,10 @@
 package com.anthony.net.sample.github.client.dto.response
 
+import com.anthony.net.sample.github.client.dto.response.common.License
 import kotlinx.serialization.Serializable
 
 @Serializable
-class UserRepository : ArrayList<Repositories>()
-
-@Serializable
-data class Repositories(
+data class Repository(
     val allow_forking: Boolean,
     val archive_url: String,
     val archived: Boolean,
@@ -23,7 +21,7 @@ data class Repositories(
     val created_at: String,
     val default_branch: String,
     val deployments_url: String,
-    val description: String,
+    val description: String? = null,
     val disabled: Boolean,
     val downloads_url: String,
     val events_url: String,
@@ -52,8 +50,9 @@ data class Repositories(
     val issues_url: String,
     val keys_url: String,
     val labels_url: String,
-    val language: String,
+    val language: String? = null,
     val languages_url: String,
+    val license: License? = null,
     val merges_url: String,
     val milestones_url: String,
     val mirror_url: String? = null,
@@ -77,7 +76,7 @@ data class Repositories(
     val svn_url: String,
     val tags_url: String,
     val teams_url: String,
-    val topics: List<String?>,
+    val topics: List<String>,
     val trees_url: String,
     val updated_at: String,
     val url: String,
@@ -108,3 +107,4 @@ data class Owner(
     val type: String,
     val url: String
 )
+
