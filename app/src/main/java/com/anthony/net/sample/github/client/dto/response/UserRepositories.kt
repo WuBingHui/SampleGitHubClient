@@ -84,7 +84,7 @@ data class Repository(
     val watchers: Int,
     val watchers_count: Int,
     val web_commit_signoff_required: Boolean
-)
+):java.io.Serializable
 
 @Serializable
 data class Owner(
@@ -106,5 +106,5 @@ data class Owner(
     val subscriptions_url: String,
     val type: String,
     val url: String
-)
+):java.io.Serializable
 

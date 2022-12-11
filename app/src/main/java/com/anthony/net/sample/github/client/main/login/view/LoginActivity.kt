@@ -1,5 +1,6 @@
 package com.anthony.net.sample.github.client.main.login.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -8,8 +9,10 @@ import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityLoginBinding
 import com.anthony.net.sample.github.client.main.login.viewmodel.LoginViewModel
+import com.anthony.net.sample.github.client.main.user_info.view.UserInfoActivity
 import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
+import java.io.Serializable
 
 class LoginActivity : BaseActivity() {
 
@@ -60,7 +63,31 @@ class LoginActivity : BaseActivity() {
 
                 Status.SUCCESS -> {
 
-                    Toast.makeText(this@LoginActivity, "Success", Toast.LENGTH_LONG).show()
+                    dto.data?.let { repositories ->
+
+                        val intent = Intent()
+
+                        val bundle = Bundle()
+
+                        bundle.putString(
+                            UserInfoActivity.USER_NAME,
+                            viewBinding.accountEditText.text.toString()
+                        )
+
+                        bundle.putSerializable(
+                            UserInfoActivity.REPOSITORIES,
+                            repositories as? Serializable
+                        )
+
+                        intent.putExtra(UserInfoActivity.BUNDLE_EXTRA, bundle)
+
+                        intent.setClass(this, UserInfoActivity::class.java)
+
+                        startActivity(intent)
+
+                        finish()
+
+                    }
 
                 }
 

@@ -61,6 +61,8 @@ class CustomLoadingDialog : DialogFragment() {
             it.requestWindowFeature(Window.FEATURE_NO_TITLE)
         }
 
+        isCancelable = false
+
         viewBinding = FragmentLoadingDialogBinding.inflate(inflater, container, false)
 
         return viewBinding.root
