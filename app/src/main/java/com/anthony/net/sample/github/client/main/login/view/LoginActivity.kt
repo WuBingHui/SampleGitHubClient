@@ -35,7 +35,7 @@ class LoginActivity : BaseActivity() {
 
     private fun initView() {
 
-        viewBinding.startedBtn.setOnClickListener {
+        viewBinding.startedLabel.setOnClickListener {
 
             val userName = viewBinding.accountEditText.text.toString()
 

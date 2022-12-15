@@ -42,13 +42,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/startedBtn"
+            <TextView
+                android:id="@+id/startedLabel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="@drawable/shape_oval_white_bg"
+                android:gravity="center"
+                android:padding="8dp"
                 android:text="@string/stared"
                 android:textColor="@color/md_white_1000"
                 android:textSize="18sp"
