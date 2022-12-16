@@ -12,9 +12,17 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions
 
-class RepositoriesAdapter(repositoryItemCallback: RepositoryItemCallback) :
+class RepositoriesAdapter(
+    repositoryItemCallback: RepositoryItemCallback,
+    private val onRepositoryItemClick: OnRepositoryItemClick
+) :
     ListAdapter<Repository, RepositoriesAdapter.ViewHolder>(repositoryItemCallback) {
 
+    interface OnRepositoryItemClick {
+
+        fun onRepositoryItemClick(position: Int)
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -32,9 +40,16 @@ class RepositoriesAdapter(repositoryItemCallback: RepositoryItemCallback) :
 
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
 
         private val viewBinding = ItemRepositoryBinding.bind(itemView)
+
+        init {
+
+            viewBinding.root.setOnClickListener(this)
+
+        }
 
         fun bind(item: Repository) {
 
@@ -57,8 +72,12 @@ class RepositoriesAdapter(repositoryItemCallback: RepositoryItemCallback) :
 
         }
 
+        override fun onClick(v: View?) {
+
+            onRepositoryItemClick.onRepositoryItemClick(adapterPosition)
+
+        }
 
     }
-
 
 }

@@ -1,6 +1,7 @@
 package com.anthony.net.sample.github.client.main.user_info.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
@@ -8,7 +9,7 @@ import com.anthony.net.sample.github.client.dto.response.Repository
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryItemCallback
 
-class UserInfoActivity : BaseActivity() {
+class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemClick {
 
     companion object {
 
@@ -43,7 +44,7 @@ class UserInfoActivity : BaseActivity() {
 
         viewBinding.userName.text = userName
 
-        repositoriesAdapter = RepositoriesAdapter(RepositoryItemCallback())
+        repositoriesAdapter = RepositoriesAdapter(RepositoryItemCallback(), this)
 
         val linearLayoutManager = LinearLayoutManager(this)
 
@@ -58,6 +59,17 @@ class UserInfoActivity : BaseActivity() {
         repositories?.let {
             repositoriesAdapter?.submitList(repositories)
         }
+
+    }
+
+    override fun onRepositoryItemClick(position: Int) {
+
+        Log.i("onRepositoryItemClick", position.toString())
+
+        Log.i(
+            "onRepositoryItemClick",
+            repositoriesAdapter?.currentList?.get(position)?.name.toString()
+        )
 
     }
 
