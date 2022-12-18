@@ -16,6 +16,13 @@
         android:theme="@style/Theme.SampleGitHubClient"
         tools:targetApi="31">
         <activity
+            android:name=".main.user_info.view.RepositoryActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".main.user_info.view.UserInfoActivity"
             android:exported="false">
             <meta-data

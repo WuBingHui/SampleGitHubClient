@@ -1,13 +1,14 @@
 package com.anthony.net.sample.github.client.main.user_info.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
 import com.anthony.net.sample.github.client.dto.response.Repository
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryItemCallback
+import java.io.Serializable
 
 class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemClick {
 
@@ -65,6 +66,16 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     override fun onRepositoryItemClick(position: Int) {
 
+        val intent = Intent()
+
+        intent.putExtra(
+            RepositoryActivity.REPOSITORIES,
+            repositoriesAdapter?.currentList?.get(position)
+        )
+
+        intent.setClass(this, RepositoryActivity::class.java)
+
+        startActivity(intent)
 
     }
 

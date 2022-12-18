@@ -3,11 +3,9 @@ package com.anthony.net.sample.github.client.dto.response
 import com.anthony.net.sample.github.client.dto.response.common.User
 import kotlinx.serialization.Serializable
 
-@Serializable
-class RepositoryCommits : ArrayList<RepositoryCommitsItem>()
 
 @Serializable
-data class RepositoryCommitsItem(
+data class Commit(
     val author_association: String,
     val body: String,
     val commit_id: String,

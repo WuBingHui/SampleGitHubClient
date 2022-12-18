@@ -2,11 +2,9 @@ package com.anthony.net.sample.github.client.dto.response
 
 import kotlinx.serialization.Serializable
 
-@Serializable
-class Collaborators : ArrayList<CollaboratorsItem>()
 
 @Serializable
-data class CollaboratorsItem(
+data class Collaborator(
     val avatar_url: String,
     val events_url: String,
     val followers_url: String,

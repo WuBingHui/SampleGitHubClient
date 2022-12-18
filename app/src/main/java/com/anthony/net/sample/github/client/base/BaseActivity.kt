@@ -1,6 +1,5 @@
 package com.anthony.net.sample.github.client.base
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.anthony.net.sample.github.client.widget.CustomLoadingDialog
