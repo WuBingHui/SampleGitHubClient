@@ -53,7 +53,9 @@ class RepositoriesAdapter(
 
         fun bind(item: Repository) {
 
-            Glide.with(itemView.context).load(item.owner.avatar_url)
+            val context = itemView.context
+
+            Glide.with(context).load(item.owner.avatar_url)
                 .apply(RequestOptions.bitmapTransform(CircleCrop()))
                 .placeholder(R.drawable.git_icon)
                 .into(viewBinding.userIcon)
@@ -66,7 +68,8 @@ class RepositoriesAdapter(
 
             viewBinding.repositoryName.text = item.name
 
-            viewBinding.repositoryDescription.text = item.description
+            viewBinding.repositoryDescription.text =
+                item.description ?: context.getString(R.string.no_description)
 
             viewBinding.repositoryLanguage.text = item.language
 

@@ -60,16 +60,11 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
             repositoriesAdapter?.submitList(repositories)
         }
 
+
     }
 
     override fun onRepositoryItemClick(position: Int) {
 
-        Log.i("onRepositoryItemClick", position.toString())
-
-        Log.i(
-            "onRepositoryItemClick",
-            repositoriesAdapter?.currentList?.get(position)?.name.toString()
-        )
 
     }
 

@@ -49,22 +49,9 @@
         android:id="@+id/repositoriesRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/searchOtherUserLable"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userInfoActionBar" />
-
-    <TextView
-        android:id="@+id/searchOtherUserLable"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@color/md_blue_400"
-        android:gravity="center"
-        android:text="@string/search_other"
-        android:textColor="@color/md_white_1000"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

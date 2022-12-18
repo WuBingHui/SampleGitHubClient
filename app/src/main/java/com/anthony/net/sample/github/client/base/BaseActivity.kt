@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.anthony.net.sample.github.client.widget.CustomLoadingDialog
 
-@SuppressLint("Registered")
+
 open class BaseActivity : AppCompatActivity() {
 
     val customLoadingDialog = CustomLoadingDialog.newInstance()

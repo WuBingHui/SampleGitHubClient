@@ -16,4 +16,9 @@
         <!-- Customize your theme here. -->
 
     </style>
+
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_slid_up</item>
+        <item name="android:windowExitAnimation">@anim/dialog_slid_down</item>
+    </style>
 </resources>
