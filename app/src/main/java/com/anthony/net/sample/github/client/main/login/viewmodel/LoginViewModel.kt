@@ -3,6 +3,8 @@ package com.anthony.net.sample.github.client.main.login.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anthony.net.sample.github.client.dto.response.Repository
+import com.anthony.net.sample.github.client.dto.response.common.Error
+import com.anthony.net.sample.github.client.model.login.repository.LoginRepository
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
 import com.aotter.aotter_suprone_android.base.BaseViewModel
@@ -10,8 +12,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
-import com.anthony.net.sample.github.client.dto.response.common.Error
-import com.anthony.net.sample.github.client.model.login.repository.LoginRepository
 
 class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewModel() {
 

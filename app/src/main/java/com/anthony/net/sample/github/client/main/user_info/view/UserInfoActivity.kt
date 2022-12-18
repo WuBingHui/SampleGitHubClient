@@ -8,7 +8,6 @@ import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
 import com.anthony.net.sample.github.client.dto.response.Repository
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryItemCallback
-import java.io.Serializable
 
 class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemClick {
 

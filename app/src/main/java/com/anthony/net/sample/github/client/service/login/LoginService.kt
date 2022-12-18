@@ -2,7 +2,8 @@ package com.anthony.net.sample.github.client.service.login
 
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface LoginService {
 

@@ -1,7 +1,7 @@
 package com.anthony.net.sample.github.client.main.user_info.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ActivityRepositoryBinding
 import com.anthony.net.sample.github.client.dto.response.Repository
@@ -47,8 +47,6 @@ class RepositoryActivity : AppCompatActivity() {
         val homeViewPagerAdapter = RepositoryViewPagerAdapter(
             this, userName, repoName
         )
-
-        viewBinding.repositoryViewPager.offscreenPageLimit = 1
 
         viewBinding.repositoryViewPager.adapter = homeViewPagerAdapter
 

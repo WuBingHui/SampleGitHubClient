@@ -10,7 +10,7 @@ interface CommitsService {
     /**
      * 取得提交的訊息列表
      */
-    @GET("repos/{owner}/{repo}/comments")
+    @GET("repos/{owner}/{repo}/commits")
     suspend fun getCommits(
         @Path("owner") owner: String,
         @Path("repo") repo: String

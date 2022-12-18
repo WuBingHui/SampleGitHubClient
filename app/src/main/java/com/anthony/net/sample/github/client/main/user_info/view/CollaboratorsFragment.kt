@@ -4,9 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.base.BaseFragment
 import com.anthony.net.sample.github.client.databinding.FragmentCollaboratorsBinding
+import com.anthony.net.sample.github.client.main.user_info.adapter.CollaboratorItemCallback
+import com.anthony.net.sample.github.client.main.user_info.adapter.CollaboratorsAdapter
 import com.anthony.net.sample.github.client.main.user_info.viewmodel.CollaboratorsViewModel
+import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
 
 class CollaboratorsFragment : BaseFragment() {
@@ -14,6 +20,8 @@ class CollaboratorsFragment : BaseFragment() {
     private lateinit var viewBinding: FragmentCollaboratorsBinding
 
     private val collaboratorsViewModel: CollaboratorsViewModel by inject()
+
+    private var collaboratorsAdapter: CollaboratorsAdapter? = null
 
     companion object {
 
@@ -53,14 +61,53 @@ class CollaboratorsFragment : BaseFragment() {
 
         initViewModel()
 
+        customLoadingDialog.show(activity?.supportFragmentManager?:childFragmentManager, customLoadingDialog.tag)
+
+        val userName = arguments?.getString(USER_NAME) ?: ""
+
+        val repoName = arguments?.getString(REPO_NAME) ?: ""
+
+        collaboratorsViewModel.getCollaborators(userName, repoName)
+
     }
 
     private fun initView() {
+
+        collaboratorsAdapter = CollaboratorsAdapter(CollaboratorItemCallback())
+
+        val linearLayoutManager = LinearLayoutManager(context)
+
+        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+
+        viewBinding.collaboratorsRecyclerView.layoutManager = linearLayoutManager
+
+        viewBinding.collaboratorsRecyclerView.adapter = collaboratorsAdapter
 
     }
 
     private fun initViewModel() {
 
+        collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner, Observer { dto ->
+
+            when (dto.status) {
+
+                Status.SUCCESS -> {
+
+                    collaboratorsAdapter?.submitList(dto.data)
+
+                }
+
+                Status.FAILED -> {
+
+                    Toast.makeText(context, dto.message, Toast.LENGTH_LONG).show()
+
+                }
+
+            }
+
+            customLoadingDialog.dismissAllowingStateLoss()
+
+        })
 
     }
 
