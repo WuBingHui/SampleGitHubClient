@@ -3,7 +3,7 @@
 ### **Main**:
 - MVVM 
 - Retrofit 
-- Coroutine 
+- Coroutines 
 
 ### **Others**:
 - ViewBinding 
