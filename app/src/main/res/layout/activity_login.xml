@@ -36,7 +36,6 @@
                 android:maxLines="1"
                 android:minHeight="48dp"
                 android:padding="10dp"
-                android:text="WuBingHui"
                 android:textColor="@color/md_black_1000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
