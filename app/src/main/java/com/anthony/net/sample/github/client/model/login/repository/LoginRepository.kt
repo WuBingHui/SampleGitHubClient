@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class LoginRepository(private val loginService: LoginService) {
 
-    suspend fun getUserRepositories(userName: String): Response<ResponseBody> =
-        loginService.getUserRepositories(userName)
+    suspend fun getUser(userName: String): Response<ResponseBody> =
+        loginService.getUser(userName)
 
 }

@@ -1,10 +1,11 @@
-package com.anthony.net.sample.github.client.main.login.viewmodel
+package com.anthony.net.sample.github.client.main.user_info.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.anthony.net.sample.github.client.dto.response.Repository
 import com.anthony.net.sample.github.client.dto.response.common.Error
 import com.anthony.net.sample.github.client.dto.response.common.User
-import com.anthony.net.sample.github.client.model.login.repository.LoginRepository
+import com.anthony.net.sample.github.client.model.user_info.repository.UserInfoRepository
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
 import com.aotter.aotter_suprone_android.base.BaseViewModel
@@ -13,11 +14,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 
-class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewModel() {
+class UserInfoViewModel(private val userInfoRepository: UserInfoRepository) : BaseViewModel() {
 
-    val onUser by lazy { MutableLiveData<Resource<User>>() }
+    val onRepositories by lazy { MutableLiveData<Resource<List<Repository>>>() }
 
-    fun getUser(userName: String) =
+    fun getRepositories(loginName: String) =
         /*viewModelScope是一个綁定到當前viewModel的作用域  當ViewModel被清除時會自動取消该作用域，所以不用擔心oom*/
         viewModelScope.launch {
 
@@ -25,7 +26,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
 
                 val data = withContext(Dispatchers.IO) {
 
-                    loginRepository.getUser(userName)
+                    userInfoRepository.getRepositories(loginName)
 
                 }
 
@@ -34,9 +35,9 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
                     data.body()?.let {
 
                         val userRepositories =
-                            RetrofitBuilder.json.decodeFromString<User>(it.string())
+                            RetrofitBuilder.json.decodeFromString<List<Repository>>(it.string())
 
-                        onUser.value = Resource.success(userRepositories)
+                        onRepositories.value = Resource.success(userRepositories)
 
                     }
 
@@ -47,7 +48,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
                         val error =
                             RetrofitBuilder.json.decodeFromString<Error>(it.string())
 
-                        onUser.value = Resource.error(error.message, null)
+                        onRepositories.value = Resource.error(error.message, null)
 
                     }
 
@@ -56,7 +57,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
 
             } catch (e: Exception) {
 
-                onUser.value = Resource.error(e.toString(), null)
+                onRepositories.value = Resource.error(e.toString(), null)
 
             }
 

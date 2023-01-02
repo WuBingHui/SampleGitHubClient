@@ -11,7 +11,6 @@ import com.anthony.net.sample.github.client.main.login.viewmodel.LoginViewModel
 import com.anthony.net.sample.github.client.main.user_info.view.UserInfoActivity
 import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
-import java.io.Serializable
 
 class LoginActivity : BaseActivity() {
 
@@ -48,7 +47,7 @@ class LoginActivity : BaseActivity() {
 
             customLoadingDialog.show(supportFragmentManager, customLoadingDialog.tag)
 
-            loginViewModel.getUserRepositories(userName)
+            loginViewModel.getUser(userName)
 
         }
 
@@ -56,35 +55,15 @@ class LoginActivity : BaseActivity() {
 
     private fun initViewModel() {
 
-        loginViewModel.onUserRepositories.observe(this, Observer { dto ->
+        loginViewModel.onUser.observe(this, Observer { dto ->
 
             when (dto.status) {
 
                 Status.SUCCESS -> {
 
-                    dto.data?.let { repositories ->
+                    dto.data?.let { user ->
 
-                        val intent = Intent()
-
-                        val bundle = Bundle()
-
-                        bundle.putString(
-                            UserInfoActivity.USER_NAME,
-                            viewBinding.accountEditText.text.toString()
-                        )
-
-                        bundle.putSerializable(
-                            UserInfoActivity.REPOSITORIES,
-                            repositories as? Serializable
-                        )
-
-                        intent.putExtra(UserInfoActivity.BUNDLE_EXTRA, bundle)
-
-                        intent.setClass(this, UserInfoActivity::class.java)
-
-                        startActivity(intent)
-
-                        finish()
+                        openUserInfoPage(user.login)
 
                     }
 
@@ -100,6 +79,18 @@ class LoginActivity : BaseActivity() {
             customLoadingDialog.dismissAllowingStateLoss()
 
         })
+
+    }
+
+    private fun openUserInfoPage(loginName: String) {
+
+        val intent = Intent()
+
+        intent.putExtra(UserInfoActivity.LOGIN_NAME, loginName)
+
+        intent.setClass(this, UserInfoActivity::class.java)
+
+        startActivity(intent)
 
     }
 

@@ -14,7 +14,9 @@ class RepositoryActivity : AppCompatActivity() {
 
     companion object {
 
-        const val REPOSITORIES = "Repository"
+        const val REPOSITORY = "Repository"
+
+        const val BUNDLE = "Bundle"
 
     }
 
@@ -31,7 +33,7 @@ class RepositoryActivity : AppCompatActivity() {
 
     private fun initView() {
 
-        val repository = intent.getSerializableExtra(REPOSITORIES) as? Repository
+        val repository = intent.getBundleExtra(BUNDLE)?.getSerializable(REPOSITORY) as? Repository
 
         val userName = repository?.owner?.login ?: ""
 

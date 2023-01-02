@@ -2,28 +2,32 @@ package com.anthony.net.sample.github.client.main.user_info.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
 import com.anthony.net.sample.github.client.dto.response.Repository
+import com.anthony.net.sample.github.client.main.login.viewmodel.LoginViewModel
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryItemCallback
+import com.anthony.net.sample.github.client.main.user_info.viewmodel.UserInfoViewModel
+import com.anthony.net.sample.github.client.network.Status
+import org.koin.android.ext.android.inject
 
 class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemClick {
 
     companion object {
 
-        const val BUNDLE_EXTRA = "BundleExtra"
-
-        const val REPOSITORIES = "Repository"
-
-        const val USER_NAME = "UserName"
+        const val LOGIN_NAME = "LoginName"
 
     }
 
     private lateinit var viewBinding: ActivityUserInfoBinding
 
     private var repositoriesAdapter: RepositoriesAdapter? = null
+
+    private val userInfoViewModel: UserInfoViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +38,16 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
         initView()
 
+        initViewModel()
+
     }
+
 
     private fun initView() {
 
-        val bundleExtra = intent.getBundleExtra(BUNDLE_EXTRA)
+        val loginName = intent.getStringExtra(LOGIN_NAME) ?: ""
 
-        val userName = bundleExtra?.getString(USER_NAME)
-
-        viewBinding.userName.text = userName
+        viewBinding.userName.text = loginName
 
         repositoriesAdapter = RepositoriesAdapter(RepositoryItemCallback(), this)
 
@@ -54,12 +59,38 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
         viewBinding.repositoriesRecyclerView.adapter = repositoriesAdapter
 
-        val repositories = bundleExtra?.getSerializable(REPOSITORIES) as? List<Repository>
+        customLoadingDialog.show(supportFragmentManager, customLoadingDialog.tag)
 
-        repositories?.let {
-            repositoriesAdapter?.submitList(repositories)
-        }
+        userInfoViewModel.getRepositories(loginName)
 
+    }
+
+    private fun initViewModel() {
+
+        userInfoViewModel.onRepositories.observe(this, Observer { dto ->
+
+            when (dto.status) {
+
+                Status.SUCCESS -> {
+
+                    dto.data?.let {
+
+                        repositoriesAdapter?.submitList(it)
+
+                    }
+
+                }
+
+                Status.FAILED -> {
+
+                    Toast.makeText(this@UserInfoActivity, dto.message, Toast.LENGTH_LONG).show()
+
+                }
+            }
+
+            customLoadingDialog.dismissAllowingStateLoss()
+
+        })
 
     }
 
@@ -67,9 +98,16 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
         val intent = Intent()
 
-        intent.putExtra(
-            RepositoryActivity.REPOSITORIES,
+        val bundle = Bundle()
+
+        bundle.putSerializable(
+            RepositoryActivity.REPOSITORY,
             repositoriesAdapter?.currentList?.get(position)
+        )
+
+        intent.putExtra(
+            RepositoryActivity.BUNDLE,
+            bundle
         )
 
         intent.setClass(this, RepositoryActivity::class.java)

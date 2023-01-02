@@ -8,10 +8,10 @@ import retrofit2.http.Path
 interface LoginService {
 
     /**
-     * 取得倉庫清單
+     * 取得 User
      */
-    @GET("users/{userName}/repos")
-    suspend fun getUserRepositories(@Path("userName") userName: String): Response<ResponseBody>
+    @GET("users/{userName}")
+    suspend fun getUser(@Path("userName") userName: String): Response<ResponseBody>
 
 }
 
