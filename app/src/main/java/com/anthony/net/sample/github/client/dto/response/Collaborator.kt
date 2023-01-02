@@ -25,7 +25,7 @@ data class Collaborator(
     val subscriptions_url: String,
     val type: String,
     val url: String
-)
+): java.io.Serializable
 
 @Serializable
 data class Permissions(
@@ -34,4 +34,4 @@ data class Permissions(
     val pull: Boolean,
     val push: Boolean,
     val triage: Boolean
-)
+): java.io.Serializable

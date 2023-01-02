@@ -9,4 +9,4 @@ data class License(
     val spdx_id: String,
     val url: String? = null,
     val node_id: String,
-)
+): java.io.Serializable

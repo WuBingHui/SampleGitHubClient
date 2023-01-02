@@ -6,4 +6,4 @@ import kotlinx.serialization.Serializable
 data class Error(
     val documentation_url: String,
     val message: String
-)
+): java.io.Serializable

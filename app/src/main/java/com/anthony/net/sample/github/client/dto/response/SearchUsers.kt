@@ -8,5 +8,5 @@ data class SearchUsers(
     val incomplete_results: Boolean,
     val items: List<User>,
     val total_count: Int
-)
+): java.io.Serializable
 
