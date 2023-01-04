@@ -12,6 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
+import retrofit2.HttpException
+import java.io.IOException
 
 class CollaboratorsViewModel(private val collaboratorsRepository: CollaboratorsRepository) :
     BaseViewModel() {
@@ -30,34 +32,23 @@ class CollaboratorsViewModel(private val collaboratorsRepository: CollaboratorsR
 
                 }
 
-                if (data.isSuccessful) {
+                onCollaborators.value = Resource.Success(data)
 
-                    data.body()?.let {
 
-                        val userRepositories =
-                            RetrofitBuilder.json.decodeFromString<List<Collaborator>>(it.string())
+            } catch (e: HttpException) {
 
-                        onCollaborators.value = Resource.Success(userRepositories)
-
-                    }
-
-                } else {
-
-                    data.errorBody()?.let {
-
-                        val error =
-                            RetrofitBuilder.json.decodeFromString<Error>(it.string())
-
-                        onCollaborators.value = Resource.Error(error.message, null)
-
-                    }
-
+                val errorMessage = e.response()?.errorBody()?.let {
+                    RetrofitBuilder.json.decodeFromString<Error>(it.string()).message
+                } ?: kotlin.run {
+                    null
                 }
 
+                onCollaborators.value = Resource.Error(errorMessage ?: "An unexpected error occurred")
 
-            } catch (e: Exception) {
+            } catch (e: IOException) {
 
-                onCollaborators.value = Resource.Error(e.toString(), null)
+                onCollaborators.value =
+                    Resource.Error("Couldn't reach server. Check your internet connection.")
 
             }
 

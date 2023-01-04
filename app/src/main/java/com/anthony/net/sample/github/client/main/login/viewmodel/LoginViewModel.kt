@@ -12,6 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
+import retrofit2.HttpException
+import java.io.IOException
 
 class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewModel() {
 
@@ -29,34 +31,23 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
 
                 }
 
-                if (data.isSuccessful) {
+                onUser.value = Resource.Success(data)
 
-                    data.body()?.let {
 
-                        val userRepositories =
-                            RetrofitBuilder.json.decodeFromString<User>(it.string())
+            } catch (e: HttpException) {
 
-                        onUser.value = Resource.Success(userRepositories)
-
-                    }
-
-                } else {
-
-                    data.errorBody()?.let {
-
-                        val error =
-                            RetrofitBuilder.json.decodeFromString<Error>(it.string())
-
-                        onUser.value = Resource.Error(error.message, null)
-
-                    }
-
+                val errorMessage = e.response()?.errorBody()?.let {
+                    RetrofitBuilder.json.decodeFromString<Error>(it.string()).message
+                } ?: kotlin.run {
+                    null
                 }
 
+                onUser.value = Resource.Error(errorMessage ?: "An unexpected error occurred")
 
-            } catch (e: Exception) {
+            } catch (e: IOException) {
 
-                onUser.value = Resource.Error(e.toString(), null)
+                onUser.value =
+                    Resource.Error("Couldn't reach server. Check your internet connection.")
 
             }
 

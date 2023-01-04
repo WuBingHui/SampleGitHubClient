@@ -1,5 +1,6 @@
 package com.anthony.net.sample.github.client.service.user_info
 
+import com.anthony.net.sample.github.client.dto.response.Collaborator
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.GET
@@ -14,7 +15,7 @@ interface CollaboratorsService {
     suspend fun getCollaborators(
         @Path("owner") owner: String,
         @Path("repo") repo: String
-    ): Response<ResponseBody>
+    ): List<Collaborator>
 
 
 }

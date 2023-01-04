@@ -1,7 +1,6 @@
 package com.anthony.net.sample.github.client.service.user_info
 
-import okhttp3.ResponseBody
-import retrofit2.Response
+import com.anthony.net.sample.github.client.dto.response.Commit
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -14,6 +13,6 @@ interface CommitsService {
     suspend fun getCommits(
         @Path("owner") owner: String,
         @Path("repo") repo: String
-    ): Response<ResponseBody>
+    ): List<Commit>
 
 }

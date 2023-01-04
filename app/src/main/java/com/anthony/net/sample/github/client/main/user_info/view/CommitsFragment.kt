@@ -53,7 +53,10 @@ class CommitsFragment : BaseFragment() {
 
         initViewModel()
 
-        customLoadingDialog.show(activity?.supportFragmentManager?:childFragmentManager, customLoadingDialog.tag)
+        customLoadingDialog.show(
+            activity?.supportFragmentManager ?: childFragmentManager,
+            customLoadingDialog.tag
+        )
 
         val userName = arguments?.getString(CollaboratorsFragment.USER_NAME) ?: ""
 
@@ -82,9 +85,9 @@ class CommitsFragment : BaseFragment() {
 
     private fun initViewModel() {
 
-        commitsViewModel.onCommits.observe(viewLifecycleOwner, Observer { dto ->
+        commitsViewModel.onCommits.observe(viewLifecycleOwner) { dto ->
 
-            dto.data?.let {list->
+            dto.data?.let { list ->
 
                 commitsAdapter?.submitList(dto.data)
 
@@ -92,13 +95,13 @@ class CommitsFragment : BaseFragment() {
 
             dto.errorMessage?.let {
 
-                Toast.makeText(context,it, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
 
             }
 
             customLoadingDialog.dismissAllowingStateLoss()
 
-        })
+        }
 
     }
 
