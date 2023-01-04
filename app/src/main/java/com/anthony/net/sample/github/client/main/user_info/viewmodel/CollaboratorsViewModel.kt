@@ -37,7 +37,7 @@ class CollaboratorsViewModel(private val collaboratorsRepository: CollaboratorsR
                         val userRepositories =
                             RetrofitBuilder.json.decodeFromString<List<Collaborator>>(it.string())
 
-                        onCollaborators.value = Resource.success(userRepositories)
+                        onCollaborators.value = Resource.Success(userRepositories)
 
                     }
 
@@ -48,7 +48,7 @@ class CollaboratorsViewModel(private val collaboratorsRepository: CollaboratorsR
                         val error =
                             RetrofitBuilder.json.decodeFromString<Error>(it.string())
 
-                        onCollaborators.value = Resource.error(error.message, null)
+                        onCollaborators.value = Resource.Error(error.message, null)
 
                     }
 
@@ -57,7 +57,7 @@ class CollaboratorsViewModel(private val collaboratorsRepository: CollaboratorsR
 
             } catch (e: Exception) {
 
-                onCollaborators.value = Resource.error(e.toString(), null)
+                onCollaborators.value = Resource.Error(e.toString(), null)
 
             }
 

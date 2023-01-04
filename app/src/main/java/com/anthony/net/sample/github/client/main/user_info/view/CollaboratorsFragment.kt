@@ -12,7 +12,6 @@ import com.anthony.net.sample.github.client.databinding.FragmentCollaboratorsBin
 import com.anthony.net.sample.github.client.main.user_info.adapter.CollaboratorItemCallback
 import com.anthony.net.sample.github.client.main.user_info.adapter.CollaboratorsAdapter
 import com.anthony.net.sample.github.client.main.user_info.viewmodel.CollaboratorsViewModel
-import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
 
 class CollaboratorsFragment : BaseFragment() {
@@ -89,20 +88,12 @@ class CollaboratorsFragment : BaseFragment() {
 
         collaboratorsViewModel.onCollaborators.observe(viewLifecycleOwner, Observer { dto ->
 
-            when (dto.status) {
+            dto.data?.let { list->
+                collaboratorsAdapter?.submitList(list)
+            }
 
-                Status.SUCCESS -> {
-
-                    collaboratorsAdapter?.submitList(dto.data)
-
-                }
-
-                Status.FAILED -> {
-
-                    Toast.makeText(context, dto.message, Toast.LENGTH_LONG).show()
-
-                }
-
+            dto.errorMessage?.let {
+                Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }
 
             customLoadingDialog.dismissAllowingStateLoss()

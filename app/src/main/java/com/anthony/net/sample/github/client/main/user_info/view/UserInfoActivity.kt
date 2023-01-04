@@ -7,12 +7,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
-import com.anthony.net.sample.github.client.dto.response.Repository
-import com.anthony.net.sample.github.client.main.login.viewmodel.LoginViewModel
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryItemCallback
 import com.anthony.net.sample.github.client.main.user_info.viewmodel.UserInfoViewModel
-import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
 
 class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemClick {
@@ -69,23 +66,12 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
         userInfoViewModel.onRepositories.observe(this, Observer { dto ->
 
-            when (dto.status) {
+            dto.data?.let { list ->
+                repositoriesAdapter?.submitList(list)
+            }
 
-                Status.SUCCESS -> {
-
-                    dto.data?.let {
-
-                        repositoriesAdapter?.submitList(it)
-
-                    }
-
-                }
-
-                Status.FAILED -> {
-
-                    Toast.makeText(this@UserInfoActivity, dto.message, Toast.LENGTH_LONG).show()
-
-                }
+            dto.errorMessage?.let {
+                Toast.makeText(this@UserInfoActivity, it, Toast.LENGTH_LONG).show()
             }
 
             customLoadingDialog.dismissAllowingStateLoss()

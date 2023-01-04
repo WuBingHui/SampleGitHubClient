@@ -12,7 +12,6 @@ import com.anthony.net.sample.github.client.databinding.FragmentCommitsBinding
 import com.anthony.net.sample.github.client.main.user_info.adapter.CommitItemCallback
 import com.anthony.net.sample.github.client.main.user_info.adapter.CommitsAdapter
 import com.anthony.net.sample.github.client.main.user_info.viewmodel.CommitsViewModel
-import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
 
 class CommitsFragment : BaseFragment() {
@@ -85,19 +84,15 @@ class CommitsFragment : BaseFragment() {
 
         commitsViewModel.onCommits.observe(viewLifecycleOwner, Observer { dto ->
 
-            when (dto.status) {
+            dto.data?.let {list->
 
-                Status.SUCCESS -> {
+                commitsAdapter?.submitList(dto.data)
 
-                    commitsAdapter?.submitList(dto.data)
+            }
 
-                }
+            dto.errorMessage?.let {
 
-                Status.FAILED -> {
-
-                    Toast.makeText(context, dto.message, Toast.LENGTH_LONG).show()
-
-                }
+                Toast.makeText(context,it, Toast.LENGTH_LONG).show()
 
             }
 

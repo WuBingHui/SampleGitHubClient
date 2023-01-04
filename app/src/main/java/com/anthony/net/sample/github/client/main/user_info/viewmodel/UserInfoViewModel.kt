@@ -37,7 +37,7 @@ class UserInfoViewModel(private val userInfoRepository: UserInfoRepository) : Ba
                         val userRepositories =
                             RetrofitBuilder.json.decodeFromString<List<Repository>>(it.string())
 
-                        onRepositories.value = Resource.success(userRepositories)
+                        onRepositories.value = Resource.Success(userRepositories)
 
                     }
 
@@ -48,7 +48,7 @@ class UserInfoViewModel(private val userInfoRepository: UserInfoRepository) : Ba
                         val error =
                             RetrofitBuilder.json.decodeFromString<Error>(it.string())
 
-                        onRepositories.value = Resource.error(error.message, null)
+                        onRepositories.value = Resource.Error(error.message, null)
 
                     }
 
@@ -57,7 +57,7 @@ class UserInfoViewModel(private val userInfoRepository: UserInfoRepository) : Ba
 
             } catch (e: Exception) {
 
-                onRepositories.value = Resource.error(e.toString(), null)
+                onRepositories.value = Resource.Error(e.toString(), null)
 
             }
 

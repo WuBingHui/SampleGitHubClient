@@ -37,7 +37,7 @@ class CommitsViewModel(private val commitsRepository: CommitsRepository) : BaseV
                         val userRepositories =
                             RetrofitBuilder.json.decodeFromString<List<Commit>>(it.string())
 
-                        onCommits.value = Resource.success(userRepositories)
+                        onCommits.value = Resource.Success(userRepositories)
 
                     }
 
@@ -48,7 +48,7 @@ class CommitsViewModel(private val commitsRepository: CommitsRepository) : BaseV
                         val error =
                             RetrofitBuilder.json.decodeFromString<Error>(it.string())
 
-                        onCommits.value = Resource.error(error.message, null)
+                        onCommits.value = Resource.Error(error.message, null)
 
                     }
 
@@ -57,9 +57,7 @@ class CommitsViewModel(private val commitsRepository: CommitsRepository) : BaseV
 
             } catch (e: Exception) {
 
-                Log.i("dsadsa",e.toString())
-
-                onCommits.value = Resource.error(e.toString(), null)
+                onCommits.value = Resource.Error(e.toString(), null)
 
             }
 

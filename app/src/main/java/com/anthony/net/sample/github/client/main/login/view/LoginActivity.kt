@@ -9,7 +9,6 @@ import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityLoginBinding
 import com.anthony.net.sample.github.client.main.login.viewmodel.LoginViewModel
 import com.anthony.net.sample.github.client.main.user_info.view.UserInfoActivity
-import com.anthony.net.sample.github.client.network.Status
 import org.koin.android.ext.android.inject
 
 class LoginActivity : BaseActivity() {
@@ -57,23 +56,12 @@ class LoginActivity : BaseActivity() {
 
         loginViewModel.onUser.observe(this, Observer { dto ->
 
-            when (dto.status) {
+            dto.data?.let { user ->
+                openUserInfoPage(user.login)
+            }
 
-                Status.SUCCESS -> {
-
-                    dto.data?.let { user ->
-
-                        openUserInfoPage(user.login)
-
-                    }
-
-                }
-
-                Status.FAILED -> {
-
-                    Toast.makeText(this@LoginActivity, dto.message, Toast.LENGTH_LONG).show()
-
-                }
+            dto.errorMessage?.let {
+                Toast.makeText(this@LoginActivity, it, Toast.LENGTH_LONG).show()
             }
 
             customLoadingDialog.dismissAllowingStateLoss()

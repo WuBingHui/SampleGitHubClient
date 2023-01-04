@@ -36,7 +36,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
                         val userRepositories =
                             RetrofitBuilder.json.decodeFromString<User>(it.string())
 
-                        onUser.value = Resource.success(userRepositories)
+                        onUser.value = Resource.Success(userRepositories)
 
                     }
 
@@ -47,7 +47,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
                         val error =
                             RetrofitBuilder.json.decodeFromString<Error>(it.string())
 
-                        onUser.value = Resource.error(error.message, null)
+                        onUser.value = Resource.Error(error.message, null)
 
                     }
 
@@ -56,7 +56,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : BaseViewMod
 
             } catch (e: Exception) {
 
-                onUser.value = Resource.error(e.toString(), null)
+                onUser.value = Resource.Error(e.toString(), null)
 
             }
 
