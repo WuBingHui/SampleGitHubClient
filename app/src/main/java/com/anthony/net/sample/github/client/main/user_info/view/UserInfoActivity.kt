@@ -10,6 +10,7 @@ import com.anthony.net.sample.github.client.databinding.ActivityUserInfoBinding
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoriesAdapter
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryItemCallback
 import com.anthony.net.sample.github.client.main.user_info.viewmodel.UserInfoViewModel
+import com.anthony.net.sample.github.client.network.Resource
 import org.koin.android.ext.android.inject
 
 class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemClick {
@@ -64,19 +65,23 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
 
     private fun initViewModel() {
 
-        userInfoViewModel.onRepositories.observe(this, Observer { dto ->
+        userInfoViewModel.onRepositories.observe(this) { resource ->
 
-            dto.data?.let { list ->
-                repositoriesAdapter?.submitList(list)
-            }
+            when (resource) {
 
-            dto.errorMessage?.let {
-                Toast.makeText(this@UserInfoActivity, it, Toast.LENGTH_LONG).show()
+                is Resource.Success -> repositoriesAdapter?.submitList(resource.data)
+
+                is Resource.Error -> Toast.makeText(
+                    this@UserInfoActivity,
+                    resource.errorMessage,
+                    Toast.LENGTH_LONG
+                ).show()
+
             }
 
             customLoadingDialog.dismissAllowingStateLoss()
 
-        })
+        }
 
     }
 
