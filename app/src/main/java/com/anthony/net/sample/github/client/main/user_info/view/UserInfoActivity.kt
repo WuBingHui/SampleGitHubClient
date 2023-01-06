@@ -74,7 +74,7 @@ class UserInfoActivity : BaseActivity(), RepositoriesAdapter.OnRepositoryItemCli
                 is Resource.Error -> Toast.makeText(
                     this@UserInfoActivity,
                     resource.errorMessage,
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
 
             }

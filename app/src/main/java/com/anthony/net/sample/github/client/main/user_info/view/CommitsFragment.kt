@@ -92,7 +92,7 @@ class CommitsFragment : BaseFragment() {
 
                 is Resource.Success ->  commitsAdapter?.submitList(resource.data)
 
-                is Resource.Error -> Toast.makeText(context, resource.errorMessage, Toast.LENGTH_LONG).show()
+                is Resource.Error -> Toast.makeText(context, resource.errorMessage, Toast.LENGTH_SHORT).show()
 
             }
 

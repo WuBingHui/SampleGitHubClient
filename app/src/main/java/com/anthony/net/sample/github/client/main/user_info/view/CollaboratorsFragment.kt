@@ -96,7 +96,7 @@ class CollaboratorsFragment : BaseFragment() {
                 is Resource.Error -> Toast.makeText(
                     context,
                     resource.errorMessage,
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
 
             }

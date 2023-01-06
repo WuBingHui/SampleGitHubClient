@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity() {
                 is Resource.Error -> Toast.makeText(
                     this@LoginActivity,
                     resource.errorMessage,
-                    Toast.LENGTH_LONG
+                    Toast.LENGTH_SHORT
                 ).show()
 
             }
