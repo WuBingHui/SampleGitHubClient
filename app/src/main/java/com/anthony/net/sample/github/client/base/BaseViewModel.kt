@@ -1,4 +1,4 @@
-package com.aotter.aotter_suprone_android.base
+package com.anthony.net.sample.github.client.base
 
 import androidx.lifecycle.ViewModel
 

@@ -4,11 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.anthony.net.sample.github.client.dto.response.Repository
 import com.anthony.net.sample.github.client.dto.response.common.Error
-import com.anthony.net.sample.github.client.dto.response.common.User
 import com.anthony.net.sample.github.client.model.user_info.repository.UserInfoRepository
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
-import com.aotter.aotter_suprone_android.base.BaseViewModel
+import com.anthony.net.sample.github.client.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

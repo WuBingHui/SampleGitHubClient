@@ -7,7 +7,7 @@ import com.anthony.net.sample.github.client.dto.response.common.User
 import com.anthony.net.sample.github.client.model.login.repository.LoginRepository
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
-import com.aotter.aotter_suprone_android.base.BaseViewModel
+import com.anthony.net.sample.github.client.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
