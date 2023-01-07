@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemCollaboratorBinding
+import com.anthony.net.sample.github.client.databinding.ItemCommitBinding
 import com.anthony.net.sample.github.client.dto.response.Collaborator
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -19,11 +20,7 @@ class CollaboratorsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_collaborator,
-                parent,
-                false
-            )
+            ItemCollaboratorBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -33,9 +30,7 @@ class CollaboratorsAdapter(
 
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val viewBinding = ItemCollaboratorBinding.bind(itemView)
+    inner class ViewHolder(private val viewBinding: ItemCollaboratorBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(item: Collaborator) {
 

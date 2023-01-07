@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemCommitBinding
+import com.anthony.net.sample.github.client.databinding.ItemRepositoryBinding
 import com.anthony.net.sample.github.client.dto.response.Commit
 
 class CommitsAdapter(
@@ -16,11 +17,7 @@ class CommitsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_commit,
-                parent,
-                false
-            )
+            ItemCommitBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -30,17 +27,15 @@ class CommitsAdapter(
 
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val viewBinding = ItemCommitBinding.bind(itemView)
+    inner class ViewHolder(private val viewBinding: ItemCommitBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
         fun bind(item: Commit) {
 
-            viewBinding.userName.text = item.commit?.committer?.name
+            viewBinding.userName.text = item.commit.committer.name
 
-            viewBinding.date.text = item.commit?.committer?.date
+            viewBinding.date.text = item.commit.committer.date
 
-            viewBinding.message.text = item.commit?.message
+            viewBinding.message.text = item.commit.message
 
         }
 

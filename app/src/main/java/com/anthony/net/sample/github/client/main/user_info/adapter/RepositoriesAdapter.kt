@@ -26,11 +26,7 @@ class RepositoriesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(
-                R.layout.item_repository,
-                parent,
-                false
-            )
+            ItemRepositoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
@@ -40,10 +36,8 @@ class RepositoriesAdapter(
 
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    inner class ViewHolder(private val viewBinding: ItemRepositoryBinding) : RecyclerView.ViewHolder(viewBinding.root),
         View.OnClickListener {
-
-        private val viewBinding = ItemRepositoryBinding.bind(itemView)
 
         init {
 
