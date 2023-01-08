@@ -7,9 +7,4 @@ open class BaseFragment : Fragment() {
 
     val customLoadingDialog = CustomLoadingDialog.newInstance()
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
-
 }

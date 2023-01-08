@@ -1,7 +1,7 @@
 package com.anthony.net.sample.github.client.main.user_info.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.anthony.net.sample.github.client.model.dto.response.Collaborator
+import com.anthony.net.sample.github.client.model.user_info.Collaborator
 
 class CollaboratorItemCallback : DiffUtil.ItemCallback<Collaborator>() {
 

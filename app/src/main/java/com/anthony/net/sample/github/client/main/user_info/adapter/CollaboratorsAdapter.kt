@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemCollaboratorBinding
-import com.anthony.net.sample.github.client.model.dto.response.Collaborator
+import com.anthony.net.sample.github.client.model.user_info.Collaborator
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.request.RequestOptions

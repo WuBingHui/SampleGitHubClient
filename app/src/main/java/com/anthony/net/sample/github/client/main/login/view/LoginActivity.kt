@@ -3,7 +3,6 @@ package com.anthony.net.sample.github.client.main.login.view
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.base.BaseActivity
 import com.anthony.net.sample.github.client.databinding.ActivityLoginBinding

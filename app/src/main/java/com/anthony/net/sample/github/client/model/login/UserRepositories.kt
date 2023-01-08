@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.client.model.dto.response
+package com.anthony.net.sample.github.client.model.login
 
 import com.anthony.net.sample.github.client.model.common.License
 import kotlinx.serialization.Serializable

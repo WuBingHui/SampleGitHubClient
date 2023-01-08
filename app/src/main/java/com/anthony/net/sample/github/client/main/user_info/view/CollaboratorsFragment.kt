@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.anthony.net.sample.github.client.base.BaseFragment
 import com.anthony.net.sample.github.client.databinding.FragmentCollaboratorsBinding
