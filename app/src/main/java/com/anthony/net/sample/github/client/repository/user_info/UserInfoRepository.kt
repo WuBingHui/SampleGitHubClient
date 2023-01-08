@@ -1,10 +1,7 @@
-package com.anthony.net.sample.github.client.model.user_info.repository
+package com.anthony.net.sample.github.client.repository.user_info
 
-import com.anthony.net.sample.github.client.dto.response.Repository
-import com.anthony.net.sample.github.client.service.user_info.CommitsService
+import com.anthony.net.sample.github.client.model.dto.response.Repository
 import com.anthony.net.sample.github.client.service.user_info.UserInfoService
-import okhttp3.ResponseBody
-import retrofit2.Response
 
 class UserInfoRepository(private val userInfoService: UserInfoService) {
 

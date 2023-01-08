@@ -1,4 +1,4 @@
-package com.anthony.net.sample.github.client.dto.response
+package com.anthony.net.sample.github.client.model.dto.response
 
 import kotlinx.serialization.Serializable
 

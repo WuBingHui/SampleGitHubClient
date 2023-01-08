@@ -1,14 +1,11 @@
 package com.anthony.net.sample.github.client.main.user_info.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ItemCommitBinding
-import com.anthony.net.sample.github.client.databinding.ItemRepositoryBinding
-import com.anthony.net.sample.github.client.dto.response.Commit
+import com.anthony.net.sample.github.client.model.dto.response.Commit
 
 class CommitsAdapter(
     commitItemCallback: CommitItemCallback,

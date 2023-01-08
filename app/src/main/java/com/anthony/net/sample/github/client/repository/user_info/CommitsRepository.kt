@@ -1,9 +1,7 @@
-package com.anthony.net.sample.github.client.model.user_info.repository
+package com.anthony.net.sample.github.client.repository.user_info
 
-import com.anthony.net.sample.github.client.dto.response.Commit
+import com.anthony.net.sample.github.client.model.dto.response.Commit
 import com.anthony.net.sample.github.client.service.user_info.CommitsService
-import okhttp3.ResponseBody
-import retrofit2.Response
 
 class CommitsRepository(private val commitsService: CommitsService) {
 

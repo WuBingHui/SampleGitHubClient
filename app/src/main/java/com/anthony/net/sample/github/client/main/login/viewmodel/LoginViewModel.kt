@@ -2,12 +2,12 @@ package com.anthony.net.sample.github.client.main.login.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.anthony.net.sample.github.client.dto.response.common.Error
-import com.anthony.net.sample.github.client.dto.response.common.User
-import com.anthony.net.sample.github.client.model.login.repository.LoginRepository
+import com.anthony.net.sample.github.client.base.BaseViewModel
+import com.anthony.net.sample.github.client.model.common.Error
+import com.anthony.net.sample.github.client.model.common.User
 import com.anthony.net.sample.github.client.network.Resource
 import com.anthony.net.sample.github.client.network.RetrofitBuilder
-import com.anthony.net.sample.github.client.base.BaseViewModel
+import com.anthony.net.sample.github.client.repository.login.LoginRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

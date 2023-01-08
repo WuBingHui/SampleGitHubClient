@@ -1,10 +1,10 @@
 package com.anthony.net.sample.github.client.koin
 
 
-import com.anthony.net.sample.github.client.model.login.repository.LoginRepository
-import com.anthony.net.sample.github.client.model.user_info.repository.CollaboratorsRepository
-import com.anthony.net.sample.github.client.model.user_info.repository.CommitsRepository
-import com.anthony.net.sample.github.client.model.user_info.repository.UserInfoRepository
+import com.anthony.net.sample.github.client.repository.login.LoginRepository
+import com.anthony.net.sample.github.client.repository.user_info.CollaboratorsRepository
+import com.anthony.net.sample.github.client.repository.user_info.CommitsRepository
+import com.anthony.net.sample.github.client.repository.user_info.UserInfoRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {

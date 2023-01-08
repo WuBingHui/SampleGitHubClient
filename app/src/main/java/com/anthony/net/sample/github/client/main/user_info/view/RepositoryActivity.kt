@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.anthony.net.sample.github.client.R
 import com.anthony.net.sample.github.client.databinding.ActivityRepositoryBinding
-import com.anthony.net.sample.github.client.dto.response.Repository
 import com.anthony.net.sample.github.client.main.user_info.adapter.RepositoryViewPagerAdapter
+import com.anthony.net.sample.github.client.model.dto.response.Repository
 import com.google.android.material.tabs.TabLayoutMediator
 
 class RepositoryActivity : AppCompatActivity() {

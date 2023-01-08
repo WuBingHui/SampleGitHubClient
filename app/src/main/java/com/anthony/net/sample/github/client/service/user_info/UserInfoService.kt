@@ -1,8 +1,6 @@
 package com.anthony.net.sample.github.client.service.user_info
 
-import com.anthony.net.sample.github.client.dto.response.Repository
-import okhttp3.ResponseBody
-import retrofit2.Response
+import com.anthony.net.sample.github.client.model.dto.response.Repository
 import retrofit2.http.GET
 import retrofit2.http.Path
 
